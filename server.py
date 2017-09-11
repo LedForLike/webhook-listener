@@ -6,8 +6,8 @@ app = Flask(__name__)
 
 from flask import request
 
-# mqttc = paho.Client()
-# mqttc.connect(os.environ["mqtt-host"])
+mqttc = paho.Client()
+mqttc.connect(os.environ["mqtt-host"])
 
 
 @app.route("/")
@@ -19,7 +19,7 @@ def hello():
 def webhook():
     print(request.is_json)
     content = request.get_json()
-    # mqttc.publish('topic', content)
+    mqttc.publish('fb-posts-updates', content)
     print(content)
     return 'ok'
 
