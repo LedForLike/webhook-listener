@@ -25,7 +25,7 @@ def hello():
 def webhook():
     print(request.is_json)
     content = request.get_json()
-    mqttc.publish('fb-posts-updates', content)
+    mqttc.publish('fb-posts-updates', str(content))
     print(content)
     return 'ok'
 
