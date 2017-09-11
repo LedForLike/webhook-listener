@@ -7,7 +7,9 @@ app = Flask(__name__)
 from flask import request
 
 mqttc = paho.Client()
-mqttc.connect(os.environ["mqtt-host"])
+mqtt_host = os.environ["mqtt-host"]
+print(mqtt_host)
+mqttc.connect(mqtt_host)
 
 
 @app.route("/")
