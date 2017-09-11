@@ -10,7 +10,7 @@ mqttc = paho.Client()
 mqtt_host = os.environ["mqtt-host"]
 mqtt_user = os.environ["mqtt-user"]
 mqtt_pwd = os.environ["mqtt-pwd"]
-mqtt_port = os.environ["mqtt-port"]
+mqtt_port = int(os.environ["mqtt-port"])
 print(mqtt_host)
 mqttc.username_pw_set(mqtt_user, mqtt_pwd)
 mqttc.connect(mqtt_host,mqtt_port)
