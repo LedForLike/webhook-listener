@@ -1,9 +1,12 @@
 """Main entry point"""
 
-import os
-from webhook.server import app
+import logging
+import settings as Config
+from web.server import Server
 
+logging.basicConfig(level=logging.DEBUG)
+
+# pylint: disable=invalid-name
+server = Server()
 if __name__ == '__main__':
-    # Bind to PORT if defined, otherwise default to 5000.
-    port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port)
+    server.app.run(host='0.0.0.0', port=Config.WEB_PORT)

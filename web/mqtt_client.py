@@ -1,7 +1,9 @@
 """This module exposes a class that handles all MQTT interactions"""
 import logging
 import paho.mqtt.client as paho
-import webhook.config as Config
+import settings as Config
+
+# pylint: disable=too-few-public-methods
 
 
 class MqttClient:
