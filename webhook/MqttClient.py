@@ -1,6 +1,6 @@
 """This module exposes a class that handles all MQTT interactions"""
-import os
 import paho.mqtt.client as paho
+import webhook.config as Config
 
 
 class MqttClient:
@@ -8,18 +8,14 @@ class MqttClient:
 
     def __init__(self):
         self.mqttc = paho.Client()
-        mqtt_host = os.environ.get("mqtt-host", '')
-        mqtt_user = os.environ.get("mqtt-user", '')
-        mqtt_pwd = os.environ.get("mqtt-pwd", '')
-        mqtt_port = int(os.environ.get("mqtt-port", 5001))
-        self.mqttc.username_pw_set(mqtt_user, mqtt_pwd)
+        self.mqttc.username_pw_set(Config.MQTT_USER, Config.MQTT_PWD)
 
-        print('Trying to establish connection to ' + mqtt_host)
+        print('Trying to establish connection to ' + Config.MQTT_HOST)
         try:
-            self.mqttc.connect(mqtt_host, mqtt_port)
+            self.mqttc.connect(Config.MQTT_HOST, Config.MQTT_PORT)
         except ValueError:
             print("Oops!  connection to '%s' couldn't be established" %
-                  (mqtt_host))
+                  (Config.MQTT_HOST))
 
     def publish(self, topic: str, message: str):
         """Publishes a new message to a topic"""

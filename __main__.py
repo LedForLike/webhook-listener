@@ -1,6 +1,5 @@
 import os
-import server
-from server import app
+from webhook.server import app
 
 if __name__ == '__main__':
     # Bind to PORT if defined, otherwise default to 5000.
