@@ -1,12 +1,13 @@
 """rest apis routes"""
+import logging
 from flask import request
+from flask import Flask
 from webhook.MqttClient import MqttClient
+import webhook.config as Config
+
 mqttc = MqttClient()
 
-from flask import Flask
 app = Flask(__name__)
-
-FB_WEBHOOK_TOPIC_NAME = 'fb-posts-updates'
 
 
 @app.route("/")
@@ -17,6 +18,6 @@ def hello():
 @app.route("/webhook", methods=['POST'])
 def webhook():
     content = request.get_json()
-    mqttc.publish(FB_WEBHOOK_TOPIC_NAME, str(content))
-    print('Handled webhook request ' + str(content))
-    return 'ok'
+    mqttc.publish(Config.MQTT_FB_WEBHOOK_TOPIC_NAME, str(content))
+    logging.info('Handled webhook request ' + str(content))
+    return ''

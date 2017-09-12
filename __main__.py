@@ -1,3 +1,5 @@
+"""Main entry point"""
+
 import os
 from webhook.server import app
 
