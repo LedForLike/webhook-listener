@@ -6,6 +6,7 @@
 web server that handles webhook and push them into MQTT
 
 ## getting started:
+### setup
 to be able to communicate with MQTT you should have the following environemnt variable on your system:
 * mqtt-host
 * mqtt-user
@@ -14,6 +15,7 @@ to be able to communicate with MQTT you should have the following environemnt va
 
 you can grab the values from your [MQTTCloud](https://customer.cloudmqtt.com/) account
 
+### install and run
 run the following command to install project requirements
 
 `pip install -r requirements.txt --cache-dir $HOME/.pip-cache`
