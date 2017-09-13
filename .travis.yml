@@ -8,7 +8,7 @@ before_install:
   - sudo apt-get -qq update
   - sudo apt-get -t experimental install python3.6
 before_script:  
-cache:
+cache: 
   directories:
     - $HOME/.pip-cache/
 install:
