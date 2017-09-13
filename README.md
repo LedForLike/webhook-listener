@@ -12,7 +12,7 @@ to be able to communicate with MQTT you should have the following environemnt va
 * mqtt-pwd
 * mqtt-port
 
-you can grab the from your [MQTTCloud](https://customer.cloudmqtt.com/) account
+you can grab the values from your [MQTTCloud](https://customer.cloudmqtt.com/) account
 
 run the follwing command to install project requirements
 
