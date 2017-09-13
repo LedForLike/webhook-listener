@@ -14,11 +14,11 @@ to be able to communicate with MQTT you should have the following environemnt va
 
 you can grab the values from your [MQTTCloud](https://customer.cloudmqtt.com/) account
 
-run the follwing command to install project requirements
+run the following command to install project requirements
 
 `pip install -r requirements.txt --cache-dir $HOME/.pip-cache`
 
-run the follwing command to run application
+run the following command to run application
 
 `python .`
 
