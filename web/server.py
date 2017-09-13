@@ -2,7 +2,7 @@
 import logging
 from flask import request
 from flask import Flask
-from web.mqtt_client import MqttClient
+from lib.mqtt_client import MqttClient
 import settings as Config
 
 
