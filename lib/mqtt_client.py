@@ -1,7 +1,9 @@
 """This module exposes a class that handles all MQTT interactions"""
 import logging
+import json
 import paho.mqtt.client as paho
 import settings as Config
+from lib.msg import Msg
 
 # pylint: disable=too-few-public-methods
 
@@ -21,6 +23,6 @@ class MqttClient:
             logging.critical(
                 "Oops!  connection to '%s' couldn't be established", Config.MQTT_HOST)
 
-    def publish(self, topic: str, message: str):
+    def publish(self, topic: str, message: Msg):
         """Publishes a new message to a topic"""
-        return self.mqttc.publish(topic, message)
+        return self.mqttc.publish(topic, json.dumps(message.__dict__))

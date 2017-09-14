@@ -2,10 +2,15 @@
 import logging
 from flask import request
 from flask import Flask
-from lib.mqtt_client import MqttClient
 import settings as Config
+from lib.mqtt_client import MqttClient
+from lib.msg import Msg
+from lib.actions import Action
+
 
 MQTTC = MqttClient()
+
+
 # pylint: disable=no-method-argument
 class Server(object):
     """Server class"""
@@ -22,10 +27,16 @@ class Server(object):
         return request.args.get('hub.challenge')
 
     @app.route("/webhook", methods=['POST'])
-    def webhook():
+    def fb_feeds_webhook():
         """webhook api"""
         logging.debug('Handling webhook request!!')
         content = request.get_json()
-        MQTTC.publish(Config.MQTT_FB_WEBHOOK_TOPIC_NAME, str(content))
+        if content['entry'][0]['changes'][0]['value']['item'] == 'like':
+            MQTTC.publish(
+                Config.MQTT_FB_WEBHOOK_TOPIC_NAME,
+                Msg(
+                    int(content['entry'][0]['time']), Action.LIKE,
+                    content['entry'][0]['changes'][0]['value']['user_id']))
+
         logging.info('Handled webhook request ' + str(content))
         return ''
