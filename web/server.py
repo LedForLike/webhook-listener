@@ -20,8 +20,7 @@ class Server(object):
 
     @app.route("/webhook", methods=['GET'])
     # pylint: disable=no-method-argument
-    def verify():
-        request
+    def verify():        
         """webhook api"""
         return request.args.get('hub.challenge')
     
