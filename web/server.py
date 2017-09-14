@@ -1,4 +1,4 @@
-    """rest apis routes"""
+"""rest apis routes"""
 import logging
 from flask import request
 from flask import Flask
