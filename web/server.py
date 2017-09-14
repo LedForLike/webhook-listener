@@ -5,16 +5,13 @@ from flask import Flask
 import settings as Config
 from lib.mqtt_client import MqttClient
 from lib.msg import Msg
-from lib.actions import Action
-
-
-MQTTC = MqttClient()
 
 
 # pylint: disable=no-method-argument
 class Server(object):
     """Server class"""
     app = Flask(__name__)
+    MQTTC = MqttClient()
 
     @app.route("/")
     def hello():
@@ -32,10 +29,10 @@ class Server(object):
         logging.debug('Handling webhook request!!')
         content = request.get_json()
         if content['entry'][0]['changes'][0]['value']['item'] == 'like':
-            MQTTC.publish(
+            Server.MQTTC.publish(
                 Config.MQTT_FB_WEBHOOK_TOPIC_NAME,
                 Msg(
-                    int(content['entry'][0]['time']), Action.LIKE,
+                    int(content['entry'][0]['time']),'LIKE',
                     content['entry'][0]['changes'][0]['value']['user_id']))
 
         logging.info('Handled webhook request ' + str(content))
