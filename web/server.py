@@ -5,7 +5,6 @@ from flask import Flask
 from lib.mqtt_client import MqttClient
 import settings as Config
 
-
 class Server(object):
     """Server class"""
     app = Flask(__name__)
@@ -20,7 +19,9 @@ class Server(object):
         return "Hello World!"
 
     @app.route("/webhook", methods=['GET'])
-    def verify(self):
+    # pylint: disable=no-method-argument
+    def verify():
+        """webhook api"""
         return ''
     
     @app.route("/webhook", methods=['POST'])
