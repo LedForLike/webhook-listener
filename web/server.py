@@ -1,4 +1,4 @@
-"""rest apis routes"""
+    """rest apis routes"""
 import logging
 from flask import request
 from flask import Flask
@@ -19,6 +19,10 @@ class Server(object):
         """default"""
         return "Hello World!"
 
+    @app.route("/webhook", methods=['GET'])
+    def verify(self):
+        return ''
+    
     @app.route("/webhook", methods=['POST'])
     def webhook(self):
         """webhook api"""
