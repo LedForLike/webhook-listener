@@ -20,7 +20,7 @@ env:
     - mqtt-port=1000    
     - PYTHONPATH=$PYTHONPATH:$(pwd)
 script:
-  - pylint  web/ lib/ --msg-template='[{msg_id}]({line}) {msg}'  
+  - pylint  web/ services/ common/ --msg-template='[{msg_id}]({line}) {msg}'  
 after_success:  
 notifications:
   email: false  
